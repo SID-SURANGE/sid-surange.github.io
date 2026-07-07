@@ -1,0 +1,428 @@
+---
+import Base from '../layouts/Base.astro';
+
+const projects = [
+  {
+    name: 'Briefcast',
+    url: 'https://github.com/SID-SURANGE/briefcast',
+    pitch:
+      'Automated AI research briefing agent — monitors Google AI, DeepMind, OpenAI, Anthropic, arXiv and more, then delivers a curated daily digest to Telegram with follow-up Q&A over a 14-day rolling knowledge base.',
+    stack: ['FastAPI', 'PostgreSQL + pgvector', 'LangChain LCEL', 'OpenRouter', 'Railway'],
+    highlight: 'Dual-layer dedup (SHA-256 + cosine), tiered source ranking, cited RAG answers — ~$8/month in production.',
+  },
+  {
+    name: 'claude-code-catalog',
+    url: 'https://github.com/SID-SURANGE/claude-code-catalog',
+    pitch:
+      'Scans official and top community Claude Code repos for agents, skills, commands, and hooks, then lets you interactively install what you want straight into ~/.claude/ — with license tracking and attribution built in.',
+    stack: ['Python', 'Claude Code ecosystem'],
+    highlight: '8 curated sources with per-repo license classification and a unified scanner across heterogeneous repo layouts.',
+  },
+  {
+    name: 'cursor-team-ops',
+    url: 'https://github.com/SID-SURANGE/cursor-team-ops',
+    pitch:
+      'A team-ops layer for Cursor — versioned rules, agent skills, and git guardrails that roll out across an entire engineering team in minutes, not sprints.',
+    stack: ['Shell', 'Cursor rules/skills', 'CI hooks'],
+    highlight: '16 versioned skills, 7 enforcement rule packs, 3 automated guardrail hooks, team policy baked in.',
+  },
+  {
+    name: 'ResumeParser',
+    url: 'https://github.com/SID-SURANGE/ResumeParser',
+    pitch:
+      'HR-focused resume analysis that runs entirely on local LLMs — no API keys. Extracts structured data from PDFs, flags missing sections, and generates tailored interview questions.',
+    stack: ['FastAPI', 'Gradio', 'IBM Docling', 'LM Studio'],
+    highlight: 'Fully offline with 8-bit quantized Llama 3.1/3.2 and IBM Granite.',
+  },
+  {
+    name: 'PageSense · AgentForge',
+    url: 'https://github.com/SID-SURANGE/AI-Sandbox',
+    pitch:
+      'Monorepo of production-grade experiments: a Chrome extension + FastAPI/Qdrant backend for semantic search over your browsing history, and a deployed agentic app with web search and image generation.',
+    stack: ['FastAPI', 'Qdrant', 'smolagents', 'LlamaIndex'],
+    highlight: 'Shipped as working demos, not notebooks.',
+  },
+];
+
+const posts = [
+  {
+    title: 'Briefcast: How I Built a Personal AI Intelligence Agent That Reads the Entire AI Ecosystem — For ~$10/Month',
+    url: 'https://medium.com/@ssurange.dev/briefcast-how-i-built-a-personal-ai-intelligence-agent-that-reads-the-entire-ai-ecosystem-for-ac0f87d4fe65',
+  },
+  {
+    title: "What's new with OpenAI's gpt-4o-mini",
+    url: 'https://medium.com/@ssurange.dev/whats-new-with-openai-s-gpt-4o-mini-97a79e6047c3',
+  },
+  {
+    title: 'Deciphering the power of Vision Language Models',
+    url: 'https://medium.com/@ssurange.dev/deciphering-the-power-of-vision-language-vision-language-models-b873e06daae5',
+  },
+  {
+    title: 'AgentForge: A simple AI Agent with Web Search and Image Generation',
+    url: 'https://medium.com/@ssurange.dev/agentforge-a-simple-ai-agent-with-web-search-and-image-generation-capabilities-8c756f047c05',
+  },
+];
+
+const links = [
+  { label: 'GitHub', url: 'https://github.com/SID-SURANGE' },
+  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/siddharthsurange/' },
+  { label: 'Medium', url: 'https://medium.com/@ssurange.dev' },
+  { label: 'Hugging Face', url: 'https://huggingface.co/SIDS92' },
+  { label: 'Email', url: 'mailto:ssurange.dev@gmail.com' },
+];
+---
+
+<Base
+  title="Siddharth Surange · AI Engineer"
+  description="AI engineer building production-grade LLM systems — agentic workflows, evaluated RAG pipelines, and local LLM tooling."
+>
+  <header class="nav">
+    <nav aria-label="Primary">
+      <a href="#top" class="brand">SS</a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="kicker">Siddharth Surange</p>
+      <h1>AI Engineer building the layer between a raw LLM and something a business can rely on.</h1>
+      <p class="lede">
+        Retrieval that cites its sources instead of hallucinating them. Agents that fail loudly instead of
+        silently. 10 years in software, the last 2 shipping LLM-powered products to production — not just
+        notebooks.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">See my work</a>
+        <a class="btn btn-ghost" href="mailto:ssurange.dev@gmail.com">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-h">
+      <h2 id="projects-h">Projects</h2>
+      <div class="grid">
+        {
+          projects.map((p) => (
+            <article class="card">
+              <h3>
+                <a href={p.url} target="_blank" rel="noopener noreferrer">
+                  {p.name}
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 17 17 7M7 7h10v10" />
+                  </svg>
+                </a>
+              </h3>
+              <p>{p.pitch}</p>
+              <p class="highlight">{p.highlight}</p>
+              <ul class="tags" aria-label="Tech stack">
+                {p.stack.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="writing" aria-labelledby="writing-h">
+      <h2 id="writing-h">Writing</h2>
+      <p class="section-lede">I write on Medium about the parts of GenAI that are underdocumented.</p>
+      <ul class="posts">
+        {
+          posts.map((post) => (
+            <li>
+              <a href={post.url} target="_blank" rel="noopener noreferrer">
+                {post.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">How I build</h2>
+      <div class="about-cols">
+        <p>
+          Locally first — LM Studio and quantized Llama/Granite models — with cloud APIs only once an idea is
+          proven. Right now I'm deep in agentic dev tooling (Claude Code, Cursor), RAG that's actually
+          evaluated (dedup, ranking, citations, before/after evals), and local quantized LLM setups.
+        </p>
+        <p>
+          Certified: Oracle Generative AI Professional · Google Cloud Professional Data Engineer. Experiments
+          ship to Hugging Face Spaces; the write-ups land on Medium.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <h2>Let's talk</h2>
+    <p>Open to interesting AI engineering problems and collaborations.</p>
+    <ul class="social" aria-label="Profiles">
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.url} target="_blank" rel="noopener noreferrer">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="fine">© {new Date().getFullYear()} Siddharth Surange</p>
+  </footer>
+</Base>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav nav {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.5rem;
+  }
+  .brand {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    color: var(--fg);
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+  }
+  .nav-links a {
+    color: var(--fg-dim);
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    transition: color 200ms ease-out;
+  }
+  .nav-links a:hover {
+    color: var(--fg);
+  }
+
+  main {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  section {
+    padding: 4rem 0 1rem;
+  }
+
+  .hero {
+    padding: 6rem 0 4rem;
+    max-width: 46rem;
+  }
+  .kicker {
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    margin-bottom: 1.25rem;
+  }
+  .lede {
+    color: var(--fg-dim);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 1.4rem;
+    border-radius: 999px;
+    font-weight: 500;
+    transition: background 200ms ease-out, border-color 200ms ease-out;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #052e16;
+  }
+  .btn-primary:hover {
+    background: #4ade80;
+  }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--fg);
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-lede {
+    color: var(--fg-dim);
+    margin-top: -0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+    gap: 1.25rem;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 200ms ease-out, transform 200ms ease-out;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .card h3 {
+    font-size: 1.15rem;
+  }
+  .card h3 a {
+    color: var(--fg);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .card h3 a:hover {
+    color: var(--accent);
+  }
+  .card p {
+    color: var(--fg-dim);
+    font-size: 0.95rem;
+  }
+  .card .highlight {
+    color: var(--fg);
+    font-size: 0.9rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 0.75rem;
+  }
+  .tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+  }
+  .tags li {
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 0.78rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .posts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .posts li {
+    border-bottom: 1px solid var(--border);
+  }
+  .posts a {
+    display: block;
+    padding: 1rem 0;
+    color: var(--fg);
+    transition: color 200ms ease-out;
+  }
+  .posts a:hover {
+    color: var(--accent);
+  }
+
+  .about-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    color: var(--fg-dim);
+  }
+  @media (max-width: 768px) {
+    .about-cols {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    padding: 4rem 1.25rem;
+    text-align: center;
+  }
+  footer h2 {
+    margin-bottom: 0.5rem;
+  }
+  footer > p {
+    color: var(--fg-dim);
+  }
+  .social {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+  }
+  .social a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--fg);
+    transition: border-color 200ms ease-out, color 200ms ease-out;
+  }
+  .social a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .fine {
+    color: var(--fg-dim);
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+  }
+</style>
