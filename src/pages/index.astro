@@ -45,6 +45,60 @@ const projects = [
   },
 ];
 
+const roles = [
+  {
+    title: 'AI Engineer',
+    org: 'Cognida',
+    years: 'May 2025 – Present',
+    points: [
+      'Led a team of 4 automating a building-materials client’s order-assignment system with an agent-first design on top of core optimization libraries.',
+      'Led a team of 5 building an MS Teams sales bot that recommends quotes for Salesforce deals, backed by a Snowflake agent that calls an ML engine.',
+    ],
+  },
+  {
+    title: 'Senior Software Engineer',
+    org: 'Tech Mahindra',
+    years: 'Dec 2023 – May 2025',
+    points: [
+      'Led analysis and design of prompt strategies for Google Gemini code generation.',
+      'Ran prompt-engineering training for the team, followed by a 50% increase in project delivery speed.',
+    ],
+  },
+  {
+    title: 'ML Application Engineer',
+    org: 'Egen',
+    years: 'Dec 2021 – Nov 2023',
+    points: [
+      'Led a team of 2 on a cloud clinical-document dashboard for a healthcare provider: Terraform, GitHub Actions, Vertex AI and Longformer, 86% accuracy extracting clinical entities. Compared 5+ models (spaCy and LLMs) before choosing.',
+      'Led about 4 engineers migrating a client’s call/IVR system to Google Cloud and Twilio call and speech APIs, after consulting on their existing VoIP setup.',
+    ],
+  },
+  {
+    title: 'Solution Leader',
+    org: 'Brane Enterprises',
+    years: 'Mar 2021 – Nov 2021',
+    points: ['Built pose estimation with DensePose on video and generated 3D models in Blender/Unity to analyse patient exercise routines.'],
+  },
+  {
+    title: 'Data Science Associate',
+    org: 'Affine',
+    years: 'Dec 2019 – Feb 2021',
+    points: [
+      'Led computer-vision object detection (RetinaNet, YOLO) for three enterprise clients, reaching 88% accuracy.',
+      'Delivered a StyleGAN proof of concept for game-character images in 4 weeks.',
+    ],
+  },
+  {
+    title: 'Professional Product Developer',
+    org: 'DXC Technology',
+    years: 'Aug 2015 – Jun 2019',
+    points: [
+      'Led an on-site Agile rollout in Sweden for a home-insurance application.',
+      'Delivered 30+ features for a health-insurance app.',
+    ],
+  },
+];
+
 const posts = [
   {
     title: 'Briefcast: How I Built a Personal AI Intelligence Agent That Reads the Entire AI Ecosystem — For ~$10/Month',
@@ -82,6 +136,7 @@ const links = [
       <a href="#top" class="brand">SS</a>
       <div class="nav-links">
         <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
         <a href="#writing">Writing</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -95,11 +150,12 @@ const links = [
       <h1>AI Engineer building the layer between a raw LLM and something a business can rely on.</h1>
       <p class="lede">
         Retrieval that cites its sources instead of hallucinating them. Agents that fail loudly instead of
-        silently. 10 years in software, 5 of them in AI and deep learning, the last 2 shipping LLM-powered
-        products to production — not just notebooks.
+        silently. 10+ years in software, 6 of them in AI and deep learning, working with LLMs since 2021 and
+        leading teams of up to 5 on agentic products.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#projects">See my work</a>
+        <a class="btn btn-ghost" href="/resume.pdf">Résumé</a>
         <a class="btn btn-ghost" href="mailto:ssurange.dev@gmail.com">Get in touch</a>
       </div>
     </section>
@@ -141,6 +197,27 @@ const links = [
       </div>
     </section>
 
+    <section id="experience" aria-labelledby="experience-h">
+      <h2 id="experience-h">Experience</h2>
+      <ol class="timeline">
+        {
+          roles.map((r) => (
+            <li>
+              <h3>
+                {r.title} · {r.org}
+              </h3>
+              <p class="years">{r.years}</p>
+              <ul>
+                {r.points.map((pt) => (
+                  <li>{pt}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
     <section id="writing" aria-labelledby="writing-h">
       <h2 id="writing-h">Writing</h2>
       <p class="section-lede">I write on Medium about the parts of GenAI that are underdocumented.</p>
@@ -170,6 +247,31 @@ const links = [
           ship to Hugging Face Spaces; the write-ups land on Medium.
         </p>
       </div>
+    </section>
+
+    <section id="work-with-me" aria-labelledby="work-h">
+      <h2 id="work-h">Work with me</h2>
+      <div class="about-cols">
+        <div>
+          <p><strong>What I build</strong></p>
+          <ul class="plain">
+            <li>Agentic workflows that sit on top of real systems (Salesforce, Snowflake, Teams).</li>
+            <li>Document and entity extraction on Google Cloud, with Terraform and CI/CD.</li>
+            <li>Private, local-LLM tools for teams that can’t send data to an API.</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>How I work</strong></p>
+          <ul class="plain">
+            <li>I lead small delivery teams of 2–5 engineers, from scoping to production rollout.</li>
+            <li>I start with the client’s existing setup and compare options before committing to a model.</li>
+            <li>Infrastructure as code and automated deploys from the first release.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="section-lede">
+        Have a problem like this? <a href="mailto:ssurange.dev@gmail.com">Email me</a> with a paragraph on it.
+      </p>
     </section>
   </main>
 
@@ -372,6 +474,42 @@ const links = [
     transition: color 200ms ease-out;
   }
   .posts a:hover {
+    color: var(--accent);
+  }
+
+  .timeline {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    border-left: 2px solid var(--border);
+    padding-left: 1.5rem;
+  }
+  .timeline h3 {
+    font-size: 1.05rem;
+  }
+  .years {
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  .timeline ul {
+    color: var(--fg-dim);
+    font-size: 0.95rem;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .plain {
+    color: var(--fg-dim);
+    padding-left: 1.1rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .section-lede a {
     color: var(--accent);
   }
 
