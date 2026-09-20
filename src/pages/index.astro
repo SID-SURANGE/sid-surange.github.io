@@ -6,9 +6,10 @@ const projects = [
     name: 'Briefcast',
     url: 'https://github.com/SID-SURANGE/briefcast',
     pitch:
-      'Automated AI research briefing agent — monitors Google AI, DeepMind, OpenAI, Anthropic, arXiv and more, then delivers a curated daily digest to Telegram with follow-up Q&A over a 14-day rolling knowledge base.',
-    stack: ['FastAPI', 'PostgreSQL + pgvector', 'LangChain LCEL', 'OpenRouter', 'Railway'],
-    highlight: 'Dual-layer dedup (SHA-256 + cosine), tiered source ranking, cited RAG answers — ~$8/month in production.',
+      'Automated Google AI briefing agent — pulls four Google blog feeds (AI, Research, Cloud AI, DeepMind), summarises and ranks new posts, and composes a daily briefing served as a web page with an archive and source-health view.',
+    stack: ['FastAPI', 'PostgreSQL + pgvector', 'OpenRouter', 'Nomic embeddings'],
+    highlight:
+      'Two-layer dedup (URL hash + title-embedding similarity), top 8 items with mandatory citations, per-call cost logging. Scoped down deliberately: RAG, Telegram and extra sources were cut, each recorded in an ADR.',
   },
   {
     name: 'claude-code-catalog',
@@ -74,7 +75,7 @@ const links = [
 
 <Base
   title="Siddharth Surange · AI Engineer"
-  description="AI engineer building production-grade LLM systems — agentic workflows, evaluated RAG pipelines, and local LLM tooling."
+  description="AI engineer building production-grade LLM systems — agentic workflows, RAG pipelines, and local LLM tooling."
 >
   <header class="nav">
     <nav aria-label="Primary">
@@ -94,8 +95,8 @@ const links = [
       <h1>AI Engineer building the layer between a raw LLM and something a business can rely on.</h1>
       <p class="lede">
         Retrieval that cites its sources instead of hallucinating them. Agents that fail loudly instead of
-        silently. 10 years in software, the last 2 shipping LLM-powered products to production — not just
-        notebooks.
+        silently. 10 years in software, 5 of them in AI and deep learning, the last 2 shipping LLM-powered
+        products to production — not just notebooks.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#projects">See my work</a>
@@ -161,8 +162,8 @@ const links = [
       <div class="about-cols">
         <p>
           Locally first — LM Studio and quantized Llama/Granite models — with cloud APIs only once an idea is
-          proven. Right now I'm deep in agentic dev tooling (Claude Code, Cursor), RAG that's actually
-          evaluated (dedup, ranking, citations, before/after evals), and local quantized LLM setups.
+          proven. Right now I'm deep in agentic dev tooling (Claude Code, Cursor), RAG with dedup,
+          ranking and citations, and local quantized LLM setups.
         </p>
         <p>
           Certified: Oracle Generative AI Professional · Google Cloud Professional Data Engineer. Experiments
